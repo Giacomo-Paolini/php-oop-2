@@ -22,7 +22,7 @@
         $prodotti = [
             $pesce = new Gioco(
                 "Fish",
-                50,
+                10,
                 $categoriaGatto,
                 "https://m.media-amazon.com/images/I/71TnS1rh-cL._AC_UF894,1000_QL80_.jpg",
                 "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
@@ -30,7 +30,7 @@
             ),
             $topo = new Gioco(
                 "Topo",
-                10,
+                15,
                 $categoriaGatto,
                 "https://is1-ssl.mzstatic.com/image/thumb/Purple71/v4/a4/14/ab/a414ab54-200f-08e1-2326-52d3a7d2024a/source/512x512bb.jpg",
                 "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
@@ -38,7 +38,7 @@
             ),
             $croccantini = new Cibo(
                 "Croccantini",
-                15,
+                13,
                 $categoriaGatto,
                 "https://www.animalhouseitalia.it/17089-large_default/trainer-natural-adult-sterilised-con-salmone-gr300-croccantini-gatto.jpg",
                 "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
@@ -73,7 +73,15 @@
                                 }
                             ?>
                         </small>
-                        <small>Prezzo: <?= $prodotto->prezzo ?></small>
+                        <small>Prezzo: <?php 
+                            try {
+                                echo $prodotto->getPrezzo();
+                            } catch (RangeException $e) {
+                                echo "Prezzo non disponibile: " . $e->getMessage();
+                            } catch (Exception $e) {
+                                echo "Prezzo non disponibile: " . $e->getMessage();
+                            }
+                        ?></small>
                     </div>
                 </div>
             <?php } ?>
