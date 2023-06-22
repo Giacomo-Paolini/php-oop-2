@@ -1,3 +1,7 @@
 body {
-    background-color: lightblue;
+    background-color: rgb(16, 59, 73);
+}
+
+i {
+    font-size: 2rem;
 }
