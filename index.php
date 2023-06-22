@@ -42,7 +42,7 @@
                 $categoriaGatto,
                 "https://www.animalhouseitalia.it/17089-large_default/trainer-natural-adult-sterilised-con-salmone-gr300-croccantini-gatto.jpg",
                 "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
-                30
+                300
             ),
         ];
 
@@ -59,6 +59,20 @@
                         <img src="<?= $prodotto->immagine ?>" alt="<?= $prodotto->nome ?>">
                         <small class="mb-2"><?= get_class($prodotto) ?></small>
                         <p><?= $prodotto->descrizione ?></p>
+                        <small>
+                            <?php
+                                if (method_exists($prodotto, 'getColore')) {
+                                    $colore = $prodotto->getColore();
+                                    echo "Colore: $colore";
+                                } elseif (method_exists($prodotto, 'getPeso')) {
+                                    $peso = $prodotto->getPeso();
+                                    echo "Peso: $peso";
+                                } elseif (method_exists($prodotto, 'getDimensione')) {
+                                    $dimensione = $prodotto->getDimensione();
+                                    echo $dimensione;
+                                }
+                            ?>
+                        </small>
                         <small>Prezzo: <?= $prodotto->prezzo ?></small>
                     </div>
                 </div>
