@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <title>E-commerce</title>
 </head>
+<style>
+    h1 {
+        margin-bottom: 0;
+        color: yellow;
+    }
+</style>
 <body>
     <?php
         require __DIR__ . "/modules/prodotto.php";
@@ -36,27 +42,58 @@
                 "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
                 "blue"
             ),
-            $croccantini = new Cibo(
-                "Croccantini",
+            $naturalTrainer = new Cibo(
+                "Natural Trainer",
                 13,
                 $categoriaGatto,
                 "https://www.animalhouseitalia.it/17089-large_default/trainer-natural-adult-sterilised-con-salmone-gr300-croccantini-gatto.jpg",
                 "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
                 300
             ),
+            $pallina = new Gioco(
+                "Pallina",
+                5,
+                $categoriaCane,
+                "https://shop-cdn-m.mediazs.com/bilder/spiky/ball/large/in/tpr/6/400/62906_PLA_TPR_Spiky_Ball_large_12_FG__53_6.jpg",
+                "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
+                "red"
+            ),
+            $joe = new Cuccia(
+                "JOE SLEEP",
+                50,
+                $categoriaCane,
+                "https://www.omlet.it/images/cache/400/400/Topology_Dog_Bed_with_Bolster_Topper_and_Black_Metal_Hairpin_Feet_-_Medium.jpg",
+                "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
+                "grande"
+            ),
+            $ultimaCroccantini = new Cibo(
+                "Ultima Croccantini",
+                8,
+                $categoriaCane,
+                "https://www.ideashoppingcenter.it/files/archivio_Files/Foto/39099_2.JPG",
+                "Cura e divertimento per il tuo amico a quattro zampe: prodotti di alta qualità per animali domestici.",
+                150
+            ),
         ];
 
     ?>
-    <div class="container">
+    <header class="container-fluid bg-black">
+        <div class="row">
+            <div class="p-3 d-flex justify-content-center align-items-center">
+                <h1>Paws & Claws</h1>
+            </div>
+        </div>
+    </header>
+    <main class="container">
         <div class="row mt-4">
             <?php foreach ($prodotti as $prodotto) { ?>
-                <div class="col-4">
+                <div class="col-4 p-2">
                     <div class="card p-4">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="mt-2"><?= $prodotto->nome ?></h3>
                             <span><?= $prodotto->categoria->icona ?></span>
                         </div>
-                        <img src="<?= $prodotto->immagine ?>" alt="<?= $prodotto->nome ?>">
+                        <img class="card-image" src="<?= $prodotto->immagine ?>" alt="<?= $prodotto->nome ?>">
                         <small class="mb-2"><?= get_class($prodotto) ?></small>
                         <p><?= $prodotto->descrizione ?></p>
                         <small>
@@ -69,7 +106,7 @@
                                     echo "Peso: $peso";
                                 } elseif (method_exists($prodotto, 'getDimensione')) {
                                     $dimensione = $prodotto->getDimensione();
-                                    echo $dimensione;
+                                    echo "Dimensione: $dimensione";
                                 }
                             ?>
                         </small>
@@ -86,6 +123,6 @@
                 </div>
             <?php } ?>
         </div>
-    </div>
+    </main>
 </body>
 </html>
